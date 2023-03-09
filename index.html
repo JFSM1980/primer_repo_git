@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Modificado</title>
+</head>
+
+<body>
+
+    <!--Se trata de hacer la aplicacion de una empresa de Pizzas a domicilio:
+
+        Precios de las Pizzas:
+
+        Margarita: 6 euros
+        Vegetal: 7 euros.
+        Carbonara: 8 euros.
+        Barbacoa: 9 euros.
+
+        El usuario seleccionará un sabor de Pizza con un select desplegable.
+    
+        Se reparten 3 tamaños de Pizza, cada una con su correspondiente valor antes indicado. 
+
+        Si pedimos la pizza en su versión mediana , dicho valor permanece inalterado.
+
+        Pero si la pizza es pequeña, el valor disminuye 2 euros, y si es grande aumenta 2 euros.
+
+        El usuario seleccionará el tamaño de pizza mediante un radio buttons.
+
+        Además si ponemos el código promocional correcto "esfamiao", recibiremos un descuento del 40 % sobre el precio resultante.
+
+        Si la entrega es a domicilio habrá que sumar 4 euros al precio final.
+    
+    -->
+    Seleccione un tipo de Pizza
+    <select id="sabor">
+        <option value="6">Margarita</option>
+        <option value="7">Vegetal</option>
+        <option value="8">Carbonara</option>
+        <option value="9">Barbacoa</option>
+    </select><br>
+    Seleccione un tamaño de Pizza:<br>
+    <input type="radio" name="boton" class="tamaño" value="Pequeño">Pequeño<br>
+    <input type="radio" name="boton" class="tamaño" value="Mediano">Mediano<br>
+    <input type="radio" name="boton" class="tamaño" value="Grande">Grande<br>
+    <input type="text" id="promo" value="" placeholder="codigo promocional"><br>
+    <input type="checkbox" name="" value="" id="delivery">Entrega a Domicilio<br>
+    <button id="btn">Enviar</button>
+    <output id="total"></output>
+
+    <script>
+
+        document.querySelector('#btn').addEventListener('click', () => {
+            const tamaños = document.querySelector('.tamaño:checked').value;
+            const codigo = document.querySelector('#promo').value;
+            const checkbox = document.querySelector('#delivery'); 
+        
+            let sabor = document.querySelector('#sabor').value;
+            let resultado = 0;
+            if (tamaños === 'Pequeño') {
+                resultado = sabor - 2;
+            } else if (tamaños === 'Grande') {
+                resultado = parseInt(sabor) + 2;
+            } else if (tamaños === 'Mediano') {
+                resultado = sabor;
+            }
+            if (codigo === 'esfamiao') {
+                resultado *= 0.60;
+            }
+            if (checkbox.checked === false){
+                resultado;
+            } else {
+                resultado += 4;
+    }
+            document.querySelector('#total').innerHTML = resultado;
+        });
+
+
+
+    </script>
+
+
+</body>
+
+</html>
